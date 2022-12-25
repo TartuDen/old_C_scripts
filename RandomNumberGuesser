@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <time.h>
+
+/**
+ * Returns a random number that is higher than the given number.
+ *
+ * @param number The current guess.
+ * @param limit The upper limit for the guessing range.
+ * @return The next higher guess.
+ */
+int get_higher_guess(int number, int limit) {
+    return rand() % limit;
+}
+
+/**
+ * Returns a random number that is lower than the given number.
+ *
+ * @param number The current guess.
+ * @param limit The lower limit for the guessing range.
+ * @return The next lower guess.
+ */
+int get_lower_guess(int number, int limit) {
+    return rand() % limit;
+}
+
+int main(void) {
+    // Set the console color
+    system("COLOR B0");
+
+    // Constants for the guessing range
+    const int LOWER_LIMIT = 0;
+    const int UPPER_LIMIT = 100;
+
+    // Allowed answers
+    char allowed_answers[2] = {'>', '<'};
+    char answer[2];
+    char allowed_answers_yn[2] = {1, 0};
+    char answer_yn[2];
+
+    // Seed the random number generator
+    srand((unsigned)time(NULL));
+
+    int number_to_guess;
+    printf("\r\nEnter your number from %i to %i, "
+           "and I will try to guess!: ", LOWER_LIMIT, UPPER_LIMIT);
+
+    // Loop until the user enters a valid integer
+    while (scanf("%i", &number_to_guess)) {
+        int check = rand() % UPPER_LIMIT;
+        printf("\r\nIs your number %i? 1/0: ", check);
+        scanf("%i", &answer_yn[0]);
+
+        // Check if the guess was correct
+        if (strcmp(answer_yn[0], allowed_answers_yn[0]) == 0) {
+            printf("YESS");
+            break;
+        } else if (strcmp(answer_yn[0], allowed_answers_yn[1]) == 0) {
+            printf("\r\nIs your number bigger '>' or smaller '<'?: ");
+            scanf("%c", &answer);
+            if (strcmp(answer, allowed_answers[0]) == 0) {
+                get_higher_guess(check, UPPER_LIMIT);
+            } else if (strcmp(answer, allowed_answers[1]) == 0) {
+                get_lower_guess(check, LOWER_LIMIT);
+            }
+        }        
+    }
+    printf("\r\nI did it!");
+    return 0;
+}
+
