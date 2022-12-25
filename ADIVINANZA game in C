@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/**
+ * Asks the user to guess the animal based on a clue.
+ *
+ * @param animal The name of the animal to guess.
+ * @param clue The clue that describes the animal.
+ * @return 0 if the user guesses correctly, 1 otherwise.
+ */
+int ask_question(char *animal, char *clue) {
+    char question[10];
+    printf("%s  ", clue);
+    scanf("%s", question);
+    short result = strcmp(question, animal);
+    if (result == 0) {
+        printf("Muy Bien!");
+        return 0;
+    } else {
+        printf("NOOOOO!");
+        return 1;
+    }
+}
+
+int main(int argc, char** argv) {
+    // Ask questions about five different animals
+    ask_question("cucaracha", "Mi tia Cuca tiene una mala racha, ¿quien sera esta muchacha?");
+    printf("\r\n\r\n");
+    ask_question("murcielago", "Que animal tiene las cinco vocales?");
+    printf("\r\n\r\n");
+    ask_question("rana", "Canto en la orilla, vivo en el agua, no soy pescado, ni soy cigarra.");
+    printf("\r\n\r\n");
+    ask_question("buho", "Quien sera que de noche sale y de dia se va?");
+    printf("\r\n\r\n");
+    ask_question("caracol", "Soy pequeno y blandito y mi casa llevo sobre el lomito.");
+    printf("\r\n\r\n");
+    return EXIT_SUCCESS;
+}
