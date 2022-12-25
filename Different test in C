@@ -13,12 +13,7 @@ int main(void) {
         
         printf("\n-- index POINTER %i:  %p and size %i bytes\n",i+1,pn+i, sizeof(pn+i));
     }
-    
-    
-    
-   
-    
-    
+
     printf("\nnames %p\n",names);
     return 0;
 }
